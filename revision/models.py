@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Arnaba(models.Model):
+class Sentence(models.Model):
     TYPE_CHOICES = (
         ('vocabulary', 'vocabulary'),
         ('expression', 'expression'),
@@ -22,3 +22,6 @@ class Arnaba(models.Model):
     type = models.CharField(max_length=200, choices= TYPE_CHOICES, default='expression')
 
     
+# class Count(models.Model):
+#     def __str__(self):
+#      return self.name

@@ -3,7 +3,9 @@ from django.urls import path
 from . import views
 app_name = 'revision'
 urlpatterns = [
-    # path('', views.index, name='index'),
+    path('', views.index, name='index'),
+
+
     # path('arnaba_create', views.arnaba_create, name='arnaba_create'),
     # path('arnab_create', views.arnab_create, name='arnab_create'),
     # path('arnaba_list', views.arnaba_list, name='arnaba_list'),
