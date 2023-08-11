@@ -63,9 +63,7 @@ def repeat(request):
         'sentence3': sentence3,
 
     }
-    print (repeat_list)
-    print (len(repeat_list))
-    print (len(sentence_list))
+
     return render(request, 'repeat.html', context)
 
 def random_hot(request):
