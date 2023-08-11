@@ -6,6 +6,13 @@ from django.template import loader
 from .models import *
 from django.core import serializers
 # Create your views here.
+#GLOBAL VARS
+repeat_list = []
+
+
+
+
+
 
 def index(request):
     global mode
@@ -22,11 +29,33 @@ def index(request):
 
 def repeat(request):
     sentence_list = Sentence.objects.filter(type='expression')
-    rid = random.randint(0, len(sentence_list) - 1)
+    global repeat_list
+    if len(repeat_list) >= len(sentence_list) - 3:
+        repeat_list = []
+    while True:
+        rid = random.randint(0, len(sentence_list) - 1)
+        if rid in repeat_list:
+            continue
+        else:
+            break
+    repeat_list = repeat_list + [rid]
     sentence1 = Sentence.objects.get(name=sentence_list[rid])
-    rid = random.randint(0, len(sentence_list) - 1)
+    while True:
+        rid = random.randint(0, len(sentence_list) - 1)
+        if rid in repeat_list:
+            continue
+        else:
+            break
+    repeat_list = repeat_list + [rid]
+
     sentence2 = Sentence.objects.get(name=sentence_list[rid])
-    rid = random.randint(0, len(sentence_list) - 1)
+    while True:
+        rid = random.randint(0, len(sentence_list) - 1)
+        if rid in repeat_list:
+            continue
+        else:
+            break    
+    repeat_list = repeat_list + [rid]
     sentence3 = Sentence.objects.get(name=sentence_list[rid])
     context = {
         'sentence1': sentence1,
@@ -34,6 +63,9 @@ def repeat(request):
         'sentence3': sentence3,
 
     }
+    print (repeat_list)
+    print (len(repeat_list))
+    print (len(sentence_list))
     return render(request, 'repeat.html', context)
 
 def random_hot(request):
