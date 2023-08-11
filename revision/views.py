@@ -12,9 +12,10 @@ def index(request):
     mode='ordered'
     sentence_name = Sentence.objects.filter(state='hot').order_by('revision_number').first()
     sentence = Sentence.objects.get(name=str(sentence_name))
-
+    rest_count = Sentence.objects.filter(state='hot',revision_number=0).count()
     context = {
-        'sentence': sentence
+        'sentence': sentence,
+        'rest_count': rest_count
 
     }
     return render(request, 'index.html', context)
@@ -25,9 +26,12 @@ def random_hot(request):
     sentence_list = Sentence.objects.filter(state='hot')
     rid = random.randint(0, len(sentence_list) - 1)
     sentence = Sentence.objects.get(name=sentence_list[rid])
+    rest_count = Sentence.objects.filter(state='hot',revision_number=0).count()
+
 
     context = {
         'sentence': sentence,
+        'rest_count': rest_count
         
 
     }
