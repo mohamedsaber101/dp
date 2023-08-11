@@ -4,6 +4,8 @@ from . import views
 app_name = 'revision'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('promote/<int:id>/', views.promote, name='promote'),
+    path('pr/<int:id>/', views.demote, name='demote'),
 
 
     # path('arnaba_create', views.arnaba_create, name='arnaba_create'),
