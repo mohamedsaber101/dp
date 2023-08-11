@@ -14,10 +14,10 @@
 
 
 <div class="row d-flex flex-row-reverse">
-  <a class="btn btn-danger btn-lg col-4" href="{% url 'revision:promote' sentence.pk %}" role="button">X</a>
+  <a class="btn btn-info btn-lg col-4" href="{% url 'revision:promote' sentence.pk %}" role="button">→ Verfolgen →</a>
 
 
-<div class="h5 col-4">{{sentence.name}} ** <b>{{sentence.revision_number}}</b></div>
+<div class="h5 col-4">{{sentence.name}} ** <b style="color:red;">{{sentence.revision_number}}</b></div>
 </div>
 
 
@@ -34,7 +34,7 @@
 
 
 <div class="row d-flex flex-row-reverse">
-  <a class="btn btn-primary  col-4  btn-lg" href="{% url 'revision:demote' sentence.pk %}" role="button">OK</a>
+  <a class="btn btn-danger  col-4  btn-lg" href="{% url 'revision:demote' sentence.pk %}" role="button">XX Überspringen XX</a>
 
   </div>
 
