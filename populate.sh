@@ -1,14 +1,9 @@
 #PUT THE CONTENT IN /tmp/a
 id=$1
-if [ $2 == v ]
-then
-type=vocabulary
-else
 type=expression
-fi
 
 file=/tmp/b
-cat /tmp/a |sed 's/E -- //g'| grep -v '^\-\-'|grep -v '^$'|grep -v '^ $'|grep -v '^   $'|grep -v '^  $' > /tmp/b
+cat /tmp/a |sed 's/\"//g' | sed "s/\'//g"|sed 's/E -- //g'| grep -v '^ \-\-'|grep -v '^\-\-'|grep -v '^$'|grep -v '^ $'|grep -v '^   $'|grep -v '^  $' > /tmp/b
 for i in `seq $(cat $file|wc -l | cut -d' ' -f1)`
 do
 if [ $((i%2)) -eq 0 ]

@@ -4,7 +4,7 @@
 
 
 <div class="row">
-<div class="card text-white bg-dark mb-3 col-12 >
+<div class="card text-white bg-dark mb-3 col-12" >
     
     <div class="card-body">
       <h1 class="card-title">{{ sentence.EN }}</h1>
@@ -13,9 +13,10 @@
 </div>
 
 
-<div class="row justify-content-between">
-<a class="btn btn-danger btn-lg col-4" href="{% url 'revision:promote' sentence.pk %}" role="button">PR</a>
-<a class="btn btn-info col-4 float-right btn-lg" href="{% url 'revision:demote' sentence.pk %}" role="button">DE</a>
+<div class="row d-flex flex-row-reverse">
+  <a class="btn btn-primary  col-4  btn-lg" href="{% url 'revision:demote' sentence.pk %}" role="button">OK</a>
+
+<div class="h5 col-2">{{sentence.name}} ** <b>{{sentence.revision_number}}</b></div>
 </div>
 
 
@@ -31,7 +32,10 @@
 </div>
 
 
+<div class="row d-flex flex-row-reverse">
+  <a class="btn btn-danger btn-lg col-4" href="{% url 'revision:promote' sentence.pk %}" role="button">X</a>
 
+  </div>
 
 
 
