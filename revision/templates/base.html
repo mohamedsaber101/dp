@@ -31,7 +31,7 @@
 <body>
 
   <link rel="stylesheet" href="{% static 'cards.css'%}" type="text/css">
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <nav class="sticky-top navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="{% url 'revision:index' %}">Ordnung</a>
 
     
@@ -40,7 +40,9 @@
           <li class="nav-item active">
             <a class="nav-link " href="{% url 'revision:random_hot' %}">Zufall</a>
           </li>
-          
+          <li class="nav-item active">
+            <a class="nav-link " href="{% url 'revision:repeat' %}">Wiederholen</a>
+          </li>
         </ul>
         
       </div>

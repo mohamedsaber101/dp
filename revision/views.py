@@ -20,6 +20,22 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+def repeat(request):
+    sentence_list = Sentence.objects.filter(type='expression')
+    rid = random.randint(0, len(sentence_list) - 1)
+    sentence1 = Sentence.objects.get(name=sentence_list[rid])
+    rid = random.randint(0, len(sentence_list) - 1)
+    sentence2 = Sentence.objects.get(name=sentence_list[rid])
+    rid = random.randint(0, len(sentence_list) - 1)
+    sentence3 = Sentence.objects.get(name=sentence_list[rid])
+    context = {
+        'sentence1': sentence1,
+        'sentence2': sentence2,
+        'sentence3': sentence3,
+
+    }
+    return render(request, 'repeat.html', context)
+
 def random_hot(request):
     global mode
     mode='random'
@@ -59,3 +75,4 @@ def demote(request, id):
         return redirect('/')
     elif mode == 'random':
         return redirect('/random')
+    
