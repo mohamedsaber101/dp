@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('random/', views.random_hot, name='random_hot'),
     path('repeat/', views.repeat, name='repeat'),
+    path('delete/<int:id>/', views.delete, name='delete'),
 
     path('promote/<int:id>/', views.promote, name='promote'),
     path('pr/<int:id>/', views.demote, name='demote'),

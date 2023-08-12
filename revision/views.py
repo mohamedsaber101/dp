@@ -27,6 +27,16 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+def delete(request, id):
+    sentence = Sentence.objects.get(pk=id)
+    sentence.delete()
+    if mode == 'ordered':
+        return redirect('/')
+    elif mode == 'random':
+        return redirect('/random')
+
+
+
 def repeat(request):
     sentence_list = Sentence.objects.filter(type='expression')
     global repeat_list
