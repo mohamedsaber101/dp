@@ -122,7 +122,7 @@ def repeat(request):
 def random_hot(request):
     global mode
     mode='random'
-    sentence_list = Sentence.objects.filter(state='hot')
+    sentence_list = Sentence.objects.filter(state='hot', revision_number__gt=0)
     rid = random.randint(0, len(sentence_list) - 1)
     sentence = Sentence.objects.get(name=sentence_list[rid])
     rest_count = Sentence.objects.filter(state='hot',revision_number=0).count()
