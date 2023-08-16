@@ -14,6 +14,7 @@ class Sentence(models.Model):
 
     def __str__(self):
         return self.name
+    
     name = models.CharField(max_length=200,unique=True)
     DE = models.CharField(max_length=2000,unique=True)
     EN = models.CharField(max_length=2000,unique=True)
@@ -22,6 +23,17 @@ class Sentence(models.Model):
     type = models.CharField(max_length=200, choices= TYPE_CHOICES, default='expression')
 
     
-# class Count(models.Model):
-#     def __str__(self):
-#      return self.name
+class Index(models.Model):
+    STATE_CHOICES = (
+        ('pending', 'pending'),
+        ('injected', 'injected'),
+    )
+
+    def __str__(self):
+     return self.name
+    
+    name = models.CharField(max_length=200,unique=True)
+    state = models.CharField(max_length=200, choices= STATE_CHOICES, default='pending')
+    time_of_injection = models.DateTimeField(null=True, blank=True)
+
+

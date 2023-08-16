@@ -40,12 +40,13 @@
 
 </div>
 
-
+{% if sentence.revision_number >= 0 %}
 <div class="row d-flex flex-row-reverse">
   <a class="btn btn-danger  col-4  btn-lg" href="{% url 'revision:demote' sentence.pk %}" role="button">XX Überspringen XX</a>
 
   </div>
+{% endif %}
 
-
+<div class="h5 col-4"><b style="color:blueviolet;">{{timer}} </b></div>
 
 {% endblock %}

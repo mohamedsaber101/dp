@@ -6,6 +6,11 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('random/', views.random_hot, name='random_hot'),
     path('repeat/', views.repeat, name='repeat'),
+    path('inject/', views.inject, name='inject'),
+    path('vocabulary/', views.vocabulary, name='vocabulary'),
+    path('set_timer/', views.set_timer, name='set_timer'),
+
+
     path('delete/<int:id>/', views.delete, name='delete'),
 
     path('promote/<int:id>/', views.promote, name='promote'),
