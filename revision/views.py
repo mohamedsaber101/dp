@@ -5,6 +5,7 @@ import datetime
 from django.http import HttpResponse
 from django.template import loader
 from .models import *
+from django.db.models import Q
 from django.core import serializers
 # Create your views here.
 #GLOBAL VARS
@@ -122,7 +123,7 @@ def repeat(request):
 def random_hot(request):
     global mode
     mode='random'
-    sentence_list = Sentence.objects.filter(state='hot', revision_number__gt=0)
+    sentence_list = Sentence.objects.filter(Q(revision_number__gt=0) | Q(state='cold', revision_number = 0))
     rid = random.randint(0, len(sentence_list) - 1)
     sentence = Sentence.objects.get(name=sentence_list[rid])
     rest_count = Sentence.objects.filter(state='hot',revision_number=0).count()
