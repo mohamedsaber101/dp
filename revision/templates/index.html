@@ -47,6 +47,6 @@
   <a class="btn btn-info btn-lg col-4" href="{% url 'revision:promote' sentence.pk %}" role="button">→ STILL →</a>
 </div>
 
-<div class="h5 col-4"><b style="color:blueviolet;">{{timer}} </b></div>
+<a class="btn h5 btn-info btn-lg col-4" href="{% url 'revision:set_timer' 'pause' %}" role="button"><b style="color:blueviolet;">{{timer}} </b></a>
 
 {% endblock %}

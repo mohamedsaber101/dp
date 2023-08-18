@@ -11,7 +11,7 @@ from django.core import serializers
 #GLOBAL VARS
 repeat_list = []
 start_time = datetime.datetime.now()
-
+timer_state = 'running'
 
 
 
@@ -169,7 +169,19 @@ def next_action(request):
     elif mode == 'repeat':
         return redirect('/repeat')
     
-def set_timer(request):
+def set_timer(request, mode='reset'):
     global start_time
-    start_time = datetime.datetime.now()
+    global  timer_state
+    global pausing_time
+    if mode == 'reset':
+        start_time = datetime.datetime.now()
+    elif mode == 'pause':
+        print (mode)
+        if timer_state == 'running':
+            pausing_time = datetime.datetime.now() - start_time
+            start_time = datetime.datetime(2070, 1, 1, 00, 00, 00)
+            timer_state = 'paused'
+        elif timer_state == 'paused':
+            start_time = datetime.datetime.now() - pausing_time
+            timer_state = 'running'
     return next_action(request)

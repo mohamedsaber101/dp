@@ -8,7 +8,7 @@ urlpatterns = [
     path('repeat/', views.repeat, name='repeat'),
     path('inject/', views.inject, name='inject'),
     path('vocabulary/', views.vocabulary, name='vocabulary'),
-    path('set_timer/', views.set_timer, name='set_timer'),
+    path('set_timer/(?P<mode>.+)/', views.set_timer, name='set_timer'),
 
 
     path('delete/<int:id>/', views.delete, name='delete'),
