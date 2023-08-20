@@ -35,6 +35,6 @@
   <a class="btn btn-danger  col-12  btn-lg" href="{% url 'revision:repeat' %}" role="button">Weiter</a>
 
   </div>
-  <div class="h5 col-4"><b style="color:blueviolet;">{{timer}} </b></div>
+  <a class="btn h5 btn-info btn-lg col-4" href="{% url 'revision:set_timer' 'pause' %}" role="button"><b style="color:blueviolet;">{{timer}} </b></a>
 
 {% endblock %}
