@@ -3,7 +3,7 @@ id=$1
 type=vocabulary
 
 file=/tmp/b
-cat /tmp/a |grep -v '='|sed 's/  ----------\*\*-----------  /\*/g' |sed 's/  ---------------------  /\*/g' > /tmp/b
+cat /tmp/v |grep -v '='|sed 's/  ----------\*\*-----------  /\*/g' |sed 's/  ---------------------  /\*/g' > /tmp/b
 for i in `seq $(cat $file|wc -l | cut -d' ' -f1)`
 do
 EN=`sed -n ${i}p $file|cut -d'*' -f1`
