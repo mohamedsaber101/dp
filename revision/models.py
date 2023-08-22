@@ -37,3 +37,9 @@ class Index(models.Model):
     time_of_injection = models.DateTimeField(null=True, blank=True)
 
 
+class Paramater(models.Model):
+    def __str__(self):
+     return self.name
+    name = models.CharField(max_length=200,unique=True)
+
+    value = models.CharField(max_length=200)

@@ -12,8 +12,20 @@ from django.core import serializers
 repeat_list = []
 start_time = datetime.datetime.now()
 timer_state = 'running'
+f = Paramater.objects.get(name='font_size')
+font_size = getattr(f, 'value')
 
+# def zoom_in(request):
+#     font_size = Paramater.objects.filter(name='font_size')
+#     current_font_size = int(getattr(font_size, 'value'))
+#     desired_font_size = str(current_font_size + 10)
+#     setattr(font_size, 'value', desired_font_size)
+#     font_size.save()
 
+# def zoom_out(request):
+#     current_font_size = Paramater.objects.filter(name='font_size')
+
+#     desired_font_size = str(current_font_size - 10)
 
 def index(request):
     global mode 
@@ -27,6 +39,7 @@ def index(request):
         'sentence': sentence,
         'rest_count': rest_count,
         'timer': str((datetime.datetime.now() - start_time)).split('.')[0],
+        'font_size': font_size,
 
 
     }
@@ -42,6 +55,7 @@ def vocabulary(request):
         'sentence': sentence,
         'rest_count': rest_count,
         'timer': str((datetime.datetime.now() - start_time)).split('.')[0],
+        'font_size': font_size,
 
         
 
@@ -115,6 +129,7 @@ def repeat(request):
         'sentence2': sentence2,
         'sentence3': sentence3,
         'timer': str((datetime.datetime.now() - start_time)).split('.')[0],
+        'font_size': font_size,
 
     }
 
@@ -133,6 +148,7 @@ def random_hot(request):
         'sentence': sentence,
         'rest_count': rest_count,
         'timer': str((datetime.datetime.now() - start_time)).split('.')[0],
+        'font_size': font_size,
 
         
 
