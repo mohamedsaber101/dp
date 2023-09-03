@@ -14,18 +14,10 @@ start_time = datetime.datetime.now()
 timer_state = 'running'
 f = Paramater.objects.get(name='font_size')
 font_size = getattr(f, 'value')
+re_index = 0
+re_list = []
+re_boolean = True
 
-# def zoom_in(request):
-#     font_size = Paramater.objects.filter(name='font_size')
-#     current_font_size = int(getattr(font_size, 'value'))
-#     desired_font_size = str(current_font_size + 10)
-#     setattr(font_size, 'value', desired_font_size)
-#     font_size.save()
-
-# def zoom_out(request):
-#     current_font_size = Paramater.objects.filter(name='font_size')
-
-#     desired_font_size = str(current_font_size - 10)
 
 def index(request):
     global mode 
@@ -184,6 +176,8 @@ def next_action(request):
         return redirect('/vocabulary')
     elif mode == 'repeat':
         return redirect('/repeat')
+    elif mode == 'dotting':
+        return redirect('/dotting')
     
 def set_timer(request, mode='reset'):
     global start_time
@@ -208,14 +202,32 @@ def dotting(request):
 
     global mode
     mode='dotting'
-    sentence_list = Sentence.objects.filter(Q(revision_number__gt=0) | Q(state='cold', revision_number = 0))
-    rid = random.randint(0, len(sentence_list) - 1)
-    sentence = Sentence.objects.get(name=sentence_list[rid])
+    global re_index
+    global re_list
+    global re_boolean
+    print (re_list)
+    if len(re_list) >= 3 and re_boolean is True:
+        sentence = Sentence.objects.get(pk=re_list[re_index])
+        re_index += 1
+        re_boolean = False
+        dotting_factor = 're_dotting_factor'
+
+    else:
+        sentence_list = Sentence.objects.filter(Q(revision_number__gt=0) | Q(state='cold', revision_number = 0))
+        rid = random.randint(0, len(sentence_list) - 1)
+        sentence = Sentence.objects.get(name=sentence_list[rid])
+        s_id=getattr(sentence, 'pk')
+        re_list.append(s_id)
+        re_boolean = True
+        dotting_factor = 'dotting_factor'
+
+
     s=str(getattr(sentence , 'DE'))
 
+    
     s_words = s.split()
     s_length = len(s_words)
-    fac = Paramater.objects.get(name='dotting_factor')
+    fac = Paramater.objects.get(name=dotting_factor)
     factor = int(getattr(fac, 'value'))
 
 
@@ -237,7 +249,7 @@ def dotting(request):
         word = ''
         if s_words[i] in missed_words:
             for k in range(len(s_words[i].replace(',', ''))):
-               word = word + '.'
+                word = word + '.'
         else:
             word = s_words[i]
 
